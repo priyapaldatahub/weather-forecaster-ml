@@ -1,84 +1,141 @@
-# 🌤️ Weather Forecaster ML
+# 🌦️ Weather Forecaster ML
 
-A beginner-friendly Machine Learning project that predicts average temperature using historical global weather data.
+A beginner-friendly Machine Learning project that predicts **average temperature** using historical weather data and provides predictions through an interactive **Streamlit web application**.
 
 ## 📌 Project Overview
 
-This project uses historical daily weather data to build a Machine Learning regression model for predicting average temperature.
+Weather conditions can vary significantly based on location, season, precipitation, wind speed, and atmospheric pressure.
 
-The complete workflow includes:
+This project uses historical daily climate data to build a Machine Learning model that predicts **average temperature (°C)** based on selected weather and time-related features.
 
-- Data collection
-- Exploratory Data Analysis (EDA)
-- Data cleaning
-- Feature engineering
-- Categorical encoding
-- Train-test splitting
-- Random Forest regression
-- Model evaluation
-- Model saving using Joblib
-- Streamlit web application
+The complete workflow covers:
 
-## 🎯 Objective
+**Data Collection → Exploratory Data Analysis → Data Preprocessing → Feature Engineering → Model Training → Prediction → Streamlit Deployment**
 
-To build a Machine Learning model that predicts `avg_temp_c` using historical weather information such as:
+---
 
-- City
-- Season
-- Precipitation
-- Average wind speed
-- Sea level pressure
-- Date-based features
+## 🎯 Objectives
 
-## 📊 Dataset
+* Analyze historical weather data.
+* Perform exploratory data analysis to identify weather patterns.
+* Clean and preprocess weather data.
+* Create useful date-based features.
+* Encode categorical weather features.
+* Train a Random Forest regression model.
+* Save the trained model for prediction.
+* Build an interactive Streamlit application.
 
-Dataset: Global Daily Climate Data
+---
 
-Source: Kaggle
+## 🗂️ Dataset
 
-Dataset contains daily weather observations from cities around the world.
+**Dataset:** Global Daily Climate Data
 
-Original dataset size:
+**Source:** Kaggle — Global Daily Climate Data
 
-- 27.6 million+ records
-- 14 features
-- 1,234 cities
+The original dataset contains approximately **27.6 million daily weather records** across multiple locations.
 
-## 🛠️ Technologies Used
+### Original Features
 
-### Programming
-- Python
+* `station_id`
+* `city_name`
+* `date`
+* `season`
+* `avg_temp_c`
+* `min_temp_c`
+* `max_temp_c`
+* `precipitation_mm`
+* `snow_depth_mm`
+* `avg_wind_dir_deg`
+* `avg_wind_speed_kmh`
+* `peak_wind_gust_kmh`
+* `avg_sea_level_pres_hpa`
+* `sunshine_total_min`
 
-### Data Analysis
-- Pandas
-- NumPy
+---
 
-### Visualization
-- Matplotlib
-- Seaborn
+## 🔍 Exploratory Data Analysis
 
-### Machine Learning
-- Scikit-learn
-- Random Forest Regressor
+The EDA phase analyzed:
 
-### Model Deployment
-- Streamlit
+* Missing values
+* Temperature distribution
+* Seasonal temperature patterns
+* City-wise temperature variations
+* Precipitation patterns
+* Wind speed distribution
+* Weather feature relationships
 
-### Model Serialization
-- Joblib
+### Key EDA Findings
 
-### Development Tools
-- Jupyter Notebook
-- VS Code
+* **Summer** had the highest average temperature among the seasons analyzed.
+* **Winter** had the lowest average temperature.
+* Faya-Largeau recorded the highest average temperature in the analyzed sample.
+* Yakutsk recorded the lowest average temperature in the analyzed sample.
+* Precipitation and wind-speed distributions contained extreme values.
 
-## 🔄 Project Workflow
+---
+
+## ⚙️ Data Preprocessing
+
+The preprocessing pipeline included:
+
+1. Selected relevant weather features.
+2. Handled missing values.
+3. Converted the `date` column into datetime format.
+4. Created date-based features:
+
+   * Year
+   * Month
+   * Day
+   * Day of Year
+5. Selected categorical features:
+
+   * City
+   * Season
+6. Applied One-Hot Encoding.
+7. Split the dataset into training and testing sets.
+
+### Dataset Split
+
+| Dataset  | Records |
+| -------- | ------: |
+| Training | 309,763 |
+| Testing  |  77,441 |
+| Total    | 387,204 |
+
+---
+
+## 🤖 Machine Learning Model
+
+### Random Forest Regressor
+
+The project uses a **Random Forest Regression** model to predict average temperature.
+
+### Input Features
+
+* City
+* Season
+* Precipitation
+* Average Wind Speed
+* Average Sea Level Pressure
+* Year
+* Month
+* Day
+* Day of Year
+
+### Target
+
+`avg_temp_c`
+
+---
+
+## 📊 Model Pipeline
 
 ```text
-Raw Weather Dataset
+Historical Weather Data
         ↓
 Data Cleaning
-        ↓
-Exploratory Data Analysis
         ↓
 Feature Engineering
         ↓
@@ -86,10 +143,47 @@ Categorical Encoding
         ↓
 Train/Test Split
         ↓
-Random Forest Regressor
+Random Forest Regression
         ↓
 Model Evaluation
         ↓
-Save Model
+Saved Model
         ↓
 Streamlit Application
+```
+
+---
+
+## 🌐 Streamlit Application
+
+The project includes an interactive Streamlit application where users can provide weather-related inputs and receive a predicted average temperature.
+
+### Application Features
+
+* City selection
+* Season selection
+* Weather feature inputs
+* Temperature prediction
+* Simple interactive interface
+
+---
+
+## 📁 Project Structure
+
+```text
+weather-forecaster-ml/
+│
+├── data/
+│   ├── raw_data/
+│   └── processed_data/
+│
+├── models/
+│   ├── weather_model.pkl
+│   ├── scaler.pkl
+│   ├── city_categories.pkl
+│   ├── season_categories.pkl
+│   └── feature_columns.pkl
+│
+├── Notebook/
+│
+```
